@@ -1,37 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-task2',
-  templateUrl: './task2.component.html',
-  styleUrls: ['./task2.component.css']
-})
-export class Task2Component implements OnInit {
-  bigCircle: HTMLElement
-  smallCircle: HTMLElement
-  maniacChecker: HTMLInputElement
-  
-  constructor() { }
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {
-  this.bigCircle = document.getElementById('big')
-	this.smallCircle = document.getElementById('small')
-	this.maniacChecker = document.getElementById('maniacCheck') as HTMLInputElement
-  this.bigCircle.addEventListener( 'mousemove', this.stalker.bind(this))
-  //window.document.addEventListener('mousemove', this.mouseMove.bind(this));
-  console.log(this) 
-  }
-  stalker(event) {
-    // console.log(event)
-		var centerBigY = this.bigCircle.offsetTop + this.bigCircle.clientHeight/2,//Y coord of center big circle
-			centerBigX = this.bigCircle.offsetLeft + this.bigCircle.clientWidth/2,//X coord of center big circle
-			centerSmallY = this.smallCircle.offsetTop + this.smallCircle.clientHeight/2,//Y coord of center big circle
-			centerSmallX = this.smallCircle.offsetLeft + this.smallCircle.clientWidth/2,//X coord of center big circle
-			smallX = this.smallCircle.offsetLeft,
-			smallY = this.smallCircle.offsetTop,
-			radiusSmall = this.smallCircle.clientWidth/2,
-			radiusBig = this.bigCircle.clientWidth/2,
+var bigCircle = document.getElementById('big'),
+	smallCircle = document.getElementById('small'),
+	maniacChecker = document.getElementById('maniacCheck'),
+	stalker = function () {
+		var centerBigY = bigCircle.offsetTop + bigCircle.clientHeight/2,//Y coord of center big circle
+			centerBigX = bigCircle.offsetLeft + bigCircle.clientWidth/2,//X coord of center big circle
+			centerSmallY = smallCircle.offsetTop + smallCircle.clientHeight/2,//Y coord of center big circle
+			centerSmallX = smallCircle.offsetLeft + smallCircle.clientWidth/2,//X coord of center big circle
+			smallX = smallCircle.offsetLeft,
+			smallY = smallCircle.offsetTop,
+			radiusSmall = smallCircle.clientWidth/2,
+			radiusBig = bigCircle.clientWidth/2,
 			mouseX = event.pageX,
 			mouseY = event.pageY,
 			distanceB2M = Math.sqrt(Math.pow((centerBigX - mouseX),2) + Math.pow((centerBigY - mouseY),2)),//distance from big circle to mouse
@@ -43,11 +21,11 @@ export class Task2Component implements OnInit {
 			escapeAngle; // random angle 4 escape
 		
 		//if normal mode
-		if (!this.maniacChecker.checked){
+		if (!maniacChecker.checked){
 			//if mouse in big circle and small can painting
 			if (distanceMaxS2B > distanceB2M){
 				//replace small circle
-				this.smallCircle.style.cssText = "\
+				smallCircle.style.cssText = "\
 					left: " + (mouseX - radiusSmall) + "px;\
 					top: " + (mouseY - radiusSmall) + "px;\
 					visibility: visible";
@@ -69,29 +47,36 @@ export class Task2Component implements OnInit {
 					outLoop = i + 2;
 			}
 			
-			this.smallCircle.style.cssText = "\
+			smallCircle.style.cssText = "\
 				left: " + (newCenterSmallX - radiusSmall) + "px;\
 				top: " + (newCenterSmallY - radiusSmall) + "px;\
 				visibility: visible";
 			
 		}
 		
-	}
-	panicStyle(event) {//function change styles to Panic Mode
-		if (this.maniacChecker.checked){
-			this.bigCircle.className = 'bigPanic';
-			this.smallCircle.className = 'smallPanic';
+	},
+	panicStyle = function () {//function change styles to Panic Mode
+		if (maniacChecker.checked){
+			bigCircle.className = 'bigPanic';
+			smallCircle.className = 'smallPanic';
 			
 			//if user click "check to Maniac Mode without entering to bigCircle
-			this.smallCircle.style.cssText = "\
+			smallCircle.style.cssText = "\
 				left: " + (event.pageX + 250) + "px;\
 				top: " + (event.pageY - 250) + "px;\
 				visibility: visible";
 			
 		} else {
-			this.bigCircle.className = '';
-			this.smallCircle.className = '';
+			bigCircle.className = '';
+			smallCircle.className = '';
 		}
-  }
+	};
+
+bigCircle.onmousemove = function () {
+	stalker();
 }
+
+maniacChecker.onchange = function () {
+	panicStyle();
+};
 

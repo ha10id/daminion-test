@@ -1,3 +1,19 @@
-<p>
-  task2 works!
-</p>
+<div class="row justify-content-center container">
+  <div id="task">                                                                                                                          
+     <h2>Тестовое задание №2</h2>                                                                                                           
+     <ul>                                                                                                                                   
+       <li>Нарисовать две окружности в окне браузера, вложенные одна в другую.</li>                                                         
+       <li>Вложенная окружность должно позиционироваться под курсором, но не выходить за границы большой окружности.</li>                   
+       <li>Если хотите нас удивить, то можете усложнить задание, чтобы вложенная окружность убегала от курсора, но не выходила за рамки боль
+     </ul>                                                                                                                                  
+     <img class="center" src="assets/img/eye.png" alt="">                                                                                                             
+  </div>                                                                                                                                     
+  <div id="solution"> 
+    <h2>Решение:</h2> 
+    <div id="big" (mousemove)="stalker($event)">                                                                                                                         
+      <div id="small"></div>                                                                                                               
+    </div>                                                                                                                                 
+      <label for="maniacCheck"><input type="checkbox" name="Maniac" id="maniacCheck">Непонятный рычажок</label>                                         
+  </div>
+</div>
+<script src="assets/js/eye.js"></script>

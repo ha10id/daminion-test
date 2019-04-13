@@ -1,0 +1,67 @@
+#task,#solution {
+	width: 590px;
+	display: inline-block;
+	margin: 10px;
+	float: left;
+}
+#big {
+	height: 500px;
+	width: 500px;
+	border-radius: 500px;
+	border: 4px solid #34648E;
+	margin: 20px auto;
+	padding: 0;
+}
+#small {
+	height: 80px;
+	width: 80px;
+	border-radius: 80px;
+	background-color: #0294BF;
+	position: absolute;
+	visibility: hidden;
+	margin: 0;
+}
+.center {                                                                                                                                    
+  display: block;                                                                                                                            
+  margin-left: auto;                                                                                                                         
+  margin-right: auto;                                                                                                                        
+  width: 100%;                                                                                                                               
+}  
+
+@keyframes bigBlink {
+	from {
+		background-color: white;
+		border-color: #34648E;
+	}	
+	50% {
+		background-color: crimson;
+		border-color: black;
+	}
+	to {
+		background-color: white;
+		border-color: #34648E;
+	}
+}
+
+@keyframes smallBlink {
+	from {
+		background-color: black;
+		opacity: 100%;
+	}
+	50% {
+		background-color: whitesmoke;
+		opacity: 10%;
+	}
+	to {
+		background-color: black;
+		opacity: 100%;
+	}
+}
+
+.bigPanic {
+	animation: bigBlink 3s linear infinite;
+}
+
+.smallPanic {
+	animation: smallBlink 3s linear infinite;
+}

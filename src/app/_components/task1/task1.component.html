@@ -1,6 +1,5 @@
-<div *ngIf="document" class="row justify-content-center container">
+<div *ngIf="document" class="container row justify-content-center">
   <div id="task">
-  <h1>Тестовые задания для Front End разработчика </h1>
   <h2>Тестовое задание №1</h2>
   <ul>
     <li>Сверстать приведенный ниже дизайн</li>
@@ -9,10 +8,10 @@
     <li>Содержимое combobox-a и стоимости отдельных лицензий загружать из JSON файла</li>
     <li>Формат ссылки на кнопке "Buy Now" сформируйте по вашему усмотрению</li>
   </ul>
-  <img src="assets/img/test1.png" alt="test 1 Image">
+    <img class="center" src="assets/img/image01.png" alt="test 1 Image">
 </div>
 <div id="solution">
-  <h2>Решение:</h2>
+  <h2 style="text-align: center">Решение:</h2>
   <form action="#" method="GET">
     <div id="inputRadio" *ngFor="let item of licensePlans; let i = index" [attr.data-index]="i">
       <input type="radio" name="licenseNameChecker" class="licenseNameChecker" id="licenseName{{i}}">
@@ -26,8 +25,7 @@
 
     </div>
     <p id="totalPrice">total: <span>${{document.totalAmount}}<sup>US</sup></span></p>
-    <button>buy now</button>
+    <button (click)="buyNow(document)">buy now</button>
     <p id="selectedPlan">{{document.licensePlan.name}}</p>
-    <!-- Selected plan: <span id="selectedPlanName">#3</span></p> -->
   </form>
 </div>

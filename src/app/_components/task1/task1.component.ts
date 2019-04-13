@@ -2,7 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-
+//import { GetJsonService } from '../../_services/getjson.service'
 export class licensePlan {
   name: string;
   amount: number;
@@ -20,6 +20,7 @@ export class Document {
   styleUrls: ['./task1.component.css']
 })
 export class Task1Component implements OnInit {
+  dataFormFile: any
   licensePlans = [{
       name: "license plan #1",
       amount: 15
@@ -35,12 +36,16 @@ export class Task1Component implements OnInit {
   ]
   public document = new Document()
 
-  constructor() {}
+  constructor(
+    // private getJsonServise: GetJsonService
+  ) {}
 
   ngOnInit() {
     // создаем документ и делаем установки по умолчанию:
     // кол-во лицензий 10
     // план по умолчанию - первая запись в licensePlans
+    //this.dataFormFile = this.getJsonServise.getDataFromJSON()
+    //console.log(this.dataFormFile)
     this.document.licenseCount = 10
     this.document.licensePlan = this.licensePlans[0]
     this.totalAmount()
@@ -63,5 +68,9 @@ export class Task1Component implements OnInit {
   totalAmount() {
     this.document.totalAmount = this.document.licenseCount * this.document.licensePlan.amount
     console.log("Total amount", this.document)
+  }
+  buyNow(document) {
+    alert(document.toSource())
+    window.location.href = "/"
   }
 }
