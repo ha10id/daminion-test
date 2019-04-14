@@ -20,7 +20,6 @@ import {
   Task1Component
 } from './_components/task1/task1.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

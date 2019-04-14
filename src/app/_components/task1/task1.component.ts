@@ -1,17 +1,21 @@
 import {
   Component,
   OnInit
-} from '@angular/core';
-//import { GetJsonService } from '../../_services/getjson.service'
-export class licensePlan {
+} from '@angular/core'
+
+import licensePlans from '../../../assets/data/data.json'
+
+export class LicensePlan {
   name: string;
   amount: number;
+	packets: [];
 }
 
 export class Document {
   licenseCount: number;
   totalAmount: number = 0;
-  licensePlan: licensePlan;
+  licensePlan: LicensePlan;
+  results: any;
 }
 
 @Component({
@@ -21,34 +25,18 @@ export class Document {
 })
 export class Task1Component implements OnInit {
   dataFormFile: any
-  licensePlans = [{
-      name: "license plan #1",
-      amount: 15
-    },
-    {
-      name: "license plan #2",
-      amount: 22
-    },
-    {
-      name: "license plan #3",
-      amount: 34
-    }
-  ]
+	LicensePlans: any;
   public document = new Document()
 
-  constructor(
-    // private getJsonServise: GetJsonService
-  ) {}
-
+  constructor() {}
   ngOnInit() {
     // создаем документ и делаем установки по умолчанию:
     // кол-во лицензий 10
     // план по умолчанию - первая запись в licensePlans
-    //this.dataFormFile = this.getJsonServise.getDataFromJSON()
-    //console.log(this.dataFormFile)
-    this.document.licenseCount = 10
-    this.document.licensePlan = this.licensePlans[0]
-    this.totalAmount()
+		this.LicensePlans = licensePlans
+    this.document.licensePlan = this.LicensePlans[0]
+    this.document.licenseCount = this.LicensePlans[0].packets[0]
+		this.totalAmount()
   }
   ngAfterViewInit() {
     // выбираем план 1 выбранным по умолчанию
@@ -62,7 +50,6 @@ export class Task1Component implements OnInit {
     this.totalAmount()
   }
   updateLicenseCount() {
-    // console.log(this.document.licenseCount)
     this.totalAmount()
   }
   totalAmount() {

@@ -13,7 +13,7 @@
 <div id="solution">
   <h2 style="text-align: center">Решение:</h2>
   <form action="#" method="GET">
-    <div id="inputRadio" *ngFor="let item of licensePlans; let i = index" [attr.data-index]="i">
+    <div id="inputRadio" *ngFor="let item of LicensePlans; let i = index" [attr.data-index]="i">
       <input type="radio" name="licenseNameChecker" class="licenseNameChecker" id="licenseName{{i}}">
       <label for="licenseName{{i}}" (click)="licenseSelect(item)">
 					<span>{{item.name}}</span>
@@ -21,9 +21,17 @@
 				</label>
     </div>
     <div id="licenseNumber">Number of licenses:
-      <input id="licenseCount" name="licenseCount" class="form-control" type="number" step="1" min="1" maxlength="100" [(ngModel)]="document.licenseCount" (change)="updateLicenseCount()">
-
+			<select id="licenseCount" name="licenseCount" class="form-control" [(ngModel)]="document.licenseCount" (onChange)="updateLicenseCount()">
+      	<option *ngFor="let packet of document.licensePlan.packets">
+          {{packet}}
+  	    </option>
+	    </select>
     </div>
+    <!--
+    <div id="licenseNumber">Number of licenses:
+      <input id="licenseCount" name="licenseCount" class="form-control" type="number" step="1" min="1" maxlength="100" [(ngModel)]="document.licenseCount" (change)="updateLicenseCount()">
+    </div>
+    -->
     <p id="totalPrice">total: <span>${{document.totalAmount}}<sup>US</sup></span></p>
     <button (click)="buyNow(document)">buy now</button>
     <p id="selectedPlan">{{document.licensePlan.name}}</p>
