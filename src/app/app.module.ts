@@ -1,3 +1,4 @@
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {
   BrowserModule
 } from '@angular/platform-browser';
@@ -31,7 +32,7 @@ import {
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
