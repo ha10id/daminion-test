@@ -57,7 +57,7 @@ export class Task1Component implements OnInit {
     console.log("Total amount", this.document)
   }
   buyNow(document) {
-    alert(document.toSource())
+    alert(JSON.stringify(document))
     window.location.href = "/"
   }
 }
