@@ -1,0 +1,17 @@
+[
+   {
+      "name":"license plan #1",
+      "amount":15,
+      "packets": [10, 30, 50]
+   },
+   {
+      "name":"license plan #2",
+      "amount":22,
+      "packets": [10, 50, 100]
+   },
+   {
+      "name":"license plan #3",
+      "amount":34,
+      "packets": [5, 10, 150]
+   }
+]
