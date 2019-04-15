@@ -21,7 +21,7 @@
 				</label>
     </div>
     <div id="licenseNumber">Number of licenses:
-			<select id="licenseCount" name="licenseCount" class="form-control" [(ngModel)]="document.licenseCount" (onChange)="updateLicenseCount()">
+			<select id="licenseCount" name="licenseCount" class="form-control" [(ngModel)]="document.licenseCount" (ngModelChange)="updateLicenseCount()">
       	<option *ngFor="let packet of document.licensePlan.packets">
           {{packet}}
   	    </option>
